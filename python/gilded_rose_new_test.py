@@ -28,7 +28,7 @@ def testLegendaryItems():
         GildedRose(items).update_quality()
     for item in items:
         assert item.quality == 80, 'Legendary item, fast rate quality issue'
-        assert item.sell_in == -2, 'Legendary item, sell_in issue'
+        assert item.sell_in == 0, 'Legendary item, sell_in issue'
 
 def testAgedBride():
     items = [Item(name='Aged Bride', sell_in = 2, quality = 8)]

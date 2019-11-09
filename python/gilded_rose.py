@@ -44,40 +44,60 @@ class GildedRose(object):
             self.sell_in_update(item)
             self.quality_update(item)
 
+    def normal_quality_update(self, item):
+        if item.sell_in >= 0:
+            item.quality -= 1
+        elif item.sell_in < 0:
+            item.quality -= 2
+
+    def conjured_quality_update(self, item):
+        if item.sell_in >= 0:
+            item.quality -= 2
+        elif item.sell_in < 0:
+            item.quality -= 4
+
+    def backstage_quality_update(self, item):
+        if item.sell_in >= 10:
+            item.quality += 1
+        elif 10 > item.sell_in >= 5:
+            item.quality += 2
+        elif 5 > item.sell_in >= 0:
+            item.quality += 3
+        elif item.sell_in < 0:
+            item.quality = 0
+
+    def sulfuras_quality_update(self, item):
+        item.quality = 80
+
+    def bride_qualit_update(self, item):
+        if item.sell_in >= 0:
+            item.quality += 1
+        if item.sell_in < 0:
+            item.quality += 2
+
+
     def quality_update(self, item):
         #Special items' behaviour
         if "Aged Bride" in item.name:
-            if item.sell_in >= 0:
-                item.quality += 1
-            if item.sell_in < 0:
-                item.quality += 2
+            self.bride_qualit_update(item)
         elif "Sulfuras" in item.name:
-            item.quality = 80
+            self.sulfuras_quality_update(item)
             return 1
         elif "Backstage passes" in item.name:
-            if item.sell_in >= 10:
-                item.quality += 1
-            elif 10 > item.sell_in >= 5:
-                item.quality += 2
-            elif 5 > item.sell_in >= 0:
-                item.quality += 3
-            elif item.sell_in < 0:
-                item.quality = 0
+            self.backstage_quality_update(item)
         elif "Conjured" in item.name:
-            if item.sell_in >= 0:
-                item.quality -= 2
-            elif item.sell_in < 0:
-                item.quality -= 4
+            self.conjured_quality_update(item)
         else:
             #Normal items' behaviour
-            if item.sell_in >= 0:
-                item.quality -= 1
-            elif item.sell_in < 0:
-                item.quality -= 2
+            self.normal_quality_update(item)
+
         self.check_if_quality_within_limits(item)
 
     def sell_in_update(self, item):
-        item.sell_in -= 1
+        if 'Sulfuras' not in item.name:
+            item.sell_in -= 1
+        else:
+            item.sell_in = 0
     
     def check_if_quality_within_limits(self, item):
         if item.quality > 50: item.quality = 50
