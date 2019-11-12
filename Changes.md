@@ -1,6 +1,6 @@
 # **Gilded Rose Kata**
 
-##### Autor: Gustaw Napiórkowski
+##### Autor: [Gustaw Napiórkowski](https://github.com/gnapiorkowski/Gilded-Rose/)
 
 ## **Kroki główne:**
 
