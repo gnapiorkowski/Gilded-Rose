@@ -127,3 +127,21 @@ funkcjonalność dotycząca przedmiotów normalnych i przeniesiona do funcji ind
         elif item.sell_in < 0:
             item.quality -= 2
 ```
+
+## **Refactoring analysis**
+
+Dokonano analizy kodu po refaktoryzacji przy użyciu narzędzia *Code
+Climate* - wyniki poniżej:
+
+|**Ogólna ocena:**|Duppikaty|Smród kodu|Inne|
+|---|---|---|---|
+|`A`|0|0|0|
+
+**Oceny poszczególnch plików oraz ilość linii kodu:**
+
+Nazwa pliku|linie kodu|ocena
+|-|-|-|
+gilded_rose.py|59|`A`
+gilded_rose_new_test.py|69|`A`
+
+Refaktoryzację uznano za pomyślnął.
