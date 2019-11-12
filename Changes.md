@@ -1,7 +1,8 @@
 # **Gilded Rose Kata**
+
 ##### Autor: Gustaw Napiórkowski
 
-## **Kroki:**
+## **Kroki główne:**
 
 ### Przeniesienie funkcjolnalności zmiany wartości sell_in do osobnej funkcji
 
@@ -15,17 +16,16 @@ Funkcja ta wygląda następująco:
             item.sell_in -= 1     def sell_in_update(self, item):
         item.sell_in -= 1
 ```
-### Zmiana nazwy update_quality na old_update_quality
 
-Na drodze planowania refactoringu dla tej funkcji została podjęta decyzja o
-całkowitym redesignie funkcjie przeprowadzonym w krokach. W tym celu nazwa funkcji
-update_quality została zmieniona na old_update_quality. Każdy krok to usunięcie
-funkcjonalności dla danego przedmiotu z funkcji old_update_quality i przeniesienie tej funkcjonalności do indywidualnej funkcji dla danego przedmiotu. Nowa funkcja
-update_quality ma natomiast za zadanie wywołac funkcję identyfikującą przdmiot i
-wywołującą odpowiednią dla niego funkcję oraz wywołać funkcję oniżajacą wartość
-sell_in.
+### Restrukturyzacja funkcji update_quality
 
-Nowa funckja update_quality uzyskała następujący design:
+Na drodze planowania refaktoryzacji dla tej funkcji została podjęta decyzja o
+przekształceniu jej w funkcję wyższego rzędu wywołującą dwie inne - sell_in_update() oraz
+quality_update, gdzie ta druga jest odpowiednikiem starej funkcji update_update quality.
+
+Pętla iterująca przedmioty została także wyciągnięta do tej funkcji ze starej wersji update_quality w celu zwiększenia przejrzystości.
+
+Nowa funckja update_qualityusała następujący design:
 
 ```python
     def update_quality(self):
@@ -33,10 +33,15 @@ Nowa funckja update_quality uzyskała następujący design:
             self.sell_in_update(item)
             self.quality_update(item)
 ```
-### stworzenie funkcji qualtiy_update identyfikującej przedmioty
 
-Funkcja qualtiy_update została stowrzona tylko w celu identyfikacji przedmiotu po
-nazwie i wywołaniu odpowiedniej dla niego funckji. Wygląda ona następująco:
+### Funkcja quality_update() - następca starej update_quality()
+
+Funkcja qualtiy_update została stowrzona jako dokładna kopia pierwotnej funkcji
+update_quality jednak w trakcie pracy postanowiono pozostawić w niej tylko funkcjonalność
+identyfikacji przedmiotu po nazwie i wywołaniu odpowiedniej dla niego funckji, która to
+przejmie konkretną aktualizację wartości *quality*.
+
+Wygląda ona następująco:
 
 ```python
 def quality_update(self, item):
@@ -55,9 +60,13 @@ def quality_update(self, item):
             self.normal_quality_update(item)
 ```
 
-### funkcja zmiany quality: Sulfuras
+## **Funkcje indywidualne dla przedmiotów**
 
-Z funkcji old_update_quality została wyciągnięta i usunięta funkcjonalność dotycząca
+W związku z potencjalną potrzebą dodawania przedmiotów w przyszłości do programu postanowiono każdy przedmiot z funkcji quality_update wydzielić do osobnej funkcji, dzięki czemu zachowujemy klarowność mając nadal odwołanie się do aktualizacji każdego z nich w jednym miejscu, ale także przenosząc część kodu w inne miejsce - mamy wyższą przejrzystość.
+
+### Funkcja zmiany quality: Sulfuras
+
+Z funkcji pierwonej update_quality została wyciągnięta i usunięta funkcjonalność dotycząca
 przedmiotu "Sulfuras" i przeniesiona do funcji indywidualnej:
 
 ```python
@@ -65,9 +74,9 @@ przedmiotu "Sulfuras" i przeniesiona do funcji indywidualnej:
         item.quality = 80
 ```
 
-### funkcja zmiany quality: Backstage passes
+### Funkcja zmiany quality: Backstage passes
 
-Z funkcji old_update_quality została wyciągnięta i usunięta funkcjonalność dotycząca
+Z funkcji pierwonej update_quality została wyciągnięta i usunięta funkcjonalność dotycząca
 przedmiotu "Backstage passes" i przeniesiona do funcji indywidualnej:
 
 ```python
@@ -82,9 +91,9 @@ przedmiotu "Backstage passes" i przeniesiona do funcji indywidualnej:
             item.quality = 0
 ```
 
-### funkcja zmiany quality: Aged Bride
+### Funkcja zmiany quality: Aged Bride
 
-Z funkcji old_update_quality została wyciągnięta i usunięta funkcjonalność dotycząca
+Z funkcji pierwonej update_quality została wyciągnięta i usunięta funkcjonalność dotycząca
 przedmiotu "Aged Bride" i przeniesiona do funcji indywidualnej:
 
 ```python
@@ -95,9 +104,9 @@ przedmiotu "Aged Bride" i przeniesiona do funcji indywidualnej:
             item.quality += 2
 ```
 
-### funkcja zmiany quality: Conjured items
+### Funkcja zmiany quality: Conjured items
 
-Z funkcji update_quality została wyciągnięta i usunięta funkcjonalność dotycząca
+Z funkcji pierwotnej update_quality została wyciągnięta i usunięta funkcjonalność dotycząca
 przedmiotu "Conjured items" i przeniesiona do funcji indywidualnej:
 
 ```python
@@ -106,4 +115,17 @@ przedmiotu "Conjured items" i przeniesiona do funcji indywidualnej:
             item.quality -= 2
         elif item.sell_in < 0:
             item.quality -= 4
+```
+
+### Funkcja zmiany quality: normal items
+
+Z funkcji pierwotnej update_quality została wyciągnięta i usunięta
+funkcjonalność dotycząca przedmiotów normalnych i przeniesiona do funcji indywidualnej:
+
+```python
+    def normal_quality_update(self, item):
+        if item.sell_in >= 0:
+            item.quality -= 1
+        elif item.sell_in < 0:
+            item.quality -= 2
 ```
