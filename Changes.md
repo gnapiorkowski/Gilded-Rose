@@ -111,10 +111,8 @@ przedmiotu "Conjured items" i przeniesiona do funcji indywidualnej:
 
 ```python
     def conjured_quality_update(self, item):
-        if item.sell_in >= 0:
-            item.quality -= 2
-        elif item.sell_in < 0:
-            item.quality -= 4
+        self.normal_quality_update(item)
+        self.normal_quality_update(item)
 ```
 
 ### Funkcja zmiany quality: normal items

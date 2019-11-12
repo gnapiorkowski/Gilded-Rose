@@ -13,14 +13,12 @@ class GildedRose(object):
     def normal_quality_update(self, item):
         if item.sell_in >= 0:
             item.quality -= 1
-        elif item.sell_in < 0:
+        else:
             item.quality -= 2
 
     def conjured_quality_update(self, item):
-        if item.sell_in >= 0:
-            item.quality -= 2
-        elif item.sell_in < 0:
-            item.quality -= 4
+        self.normal_quality_update(item)
+        self.normal_quality_update(item)
 
     def backstage_quality_update(self, item):
         if item.sell_in >= 10:
