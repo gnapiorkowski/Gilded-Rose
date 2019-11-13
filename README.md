@@ -239,8 +239,14 @@ gilded_rose_new_test.py|69|`A`
 
 ![alt text](https://raw.githubusercontent.com/gnapiorkowski/Gilded-Rose/master/img/1.png "1")
 
+Widzimy znaczny wzrost CHURN, co jest oczywiste przy dokonywaniu zmian, jednak MAINTAINABILITY nie wzrosło i pomimo wielu zmian, kolejne zmiany nadal będą łatwe co jest porządanym efektem.
+
 ![alt text](https://raw.githubusercontent.com/gnapiorkowski/Gilded-Rose/master/img/2.png "2")
+
+Widzimy na wykresie wzrost lini kodu, który był konieczny przy refaktoryzacji w celu zwiększenia przejrzystości oraz wprowadzeniu automatycznych testów, jednak widać też spadek ich ilości, który był spowodowany pomysłami na skrócenie jego długości.
 
 ![alt text](https://raw.githubusercontent.com/gnapiorkowski/Gilded-Rose/master/img/3.png "3")
 
-Refaktoryzację uznano za pomyślnął.
+Na ostatnim diagramie widzimy, że w początkowej fazie refaktoryzacji postępy były pozornie nieistniejące, a wręcz pogarszały sytuację, jednak widać, że finalnie te zmiany się opłaciły.
+
+Biorąc wszystkie czynniki pod uwagę - refaktoryzację uznano za pomyślnął.
