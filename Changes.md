@@ -1,8 +1,8 @@
 # **[Gilded Rose Kata - Refactoring](https://github.com/gnapiorkowski/Gilded-Rose/)**
 
-##### Autor: [Gustaw Napiórkowski](https://github.com/gnapiorkowski/Gilded-Rose/)
+##### Autor: [Gustaw Napiórkowski](https://github.com/gnapiorkowski/)
 
-##### [Orginał przed refaktoryzacją](https://github.com/emilybache/GildedRose-Refactoring-Kata)
+##### [Oryginał programu Gilded Rose przed refaktoryzacją](https://github.com/emilybache/GildedRose-Refactoring-Kata)
 
 ## **Kroki główne:**
 
