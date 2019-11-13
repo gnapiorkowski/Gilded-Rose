@@ -1,6 +1,8 @@
-# **Gilded Rose Kata**
+# **[Gilded Rose Kata - Refactoring](https://github.com/gnapiorkowski/Gilded-Rose/)**
 
 ##### Autor: [Gustaw Napiórkowski](https://github.com/gnapiorkowski/Gilded-Rose/)
+
+##### [Orginał przed refaktoryzacją](https://github.com/emilybache/GildedRose-Refactoring-Kata)
 
 ## **Kroki główne:**
 
