@@ -237,6 +237,10 @@ Nazwa pliku|linie kodu|ocena
 gilded_rose.py|59|`A`
 gilded_rose_new_test.py|69|`A`
 
-[1](https://github.com/gnapiorkowski/Gilded-Rose/tree/master/img/1.png)
+![alt text](https://raw.githubusercontent.com/gnapiorkowski/Gilded-Rose/master/img/1.png "1")
+
+![alt text](https://raw.githubusercontent.com/gnapiorkowski/Gilded-Rose/master/img/2.png "2")
+
+![alt text](https://raw.githubusercontent.com/gnapiorkowski/Gilded-Rose/master/img/3.png "3")
 
 Refaktoryzację uznano za pomyślnął.
